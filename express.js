@@ -10,8 +10,8 @@ const app = express();
 console.log("Listening on port 9000");
 app.listen(9000);
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get("/", (_, res) => {
+    res.send("Hello World!");
 });
 app.get("/api", statsCard);
 app.get("/pin", repoCard);

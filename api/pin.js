@@ -1,4 +1,5 @@
 import { renderRepoCard } from "../src/cards/repo-card.js";
+import allowlist from "../src/common/allowlist.js";
 import { blacklist } from "../src/common/blacklist.js";
 import {
   clampValue,
@@ -32,6 +33,18 @@ export default async (req, res) => {
   if (blacklist.includes(username)) {
     return res.send(
       renderError("Something went wrong", "This username is blacklisted", {
+        title_color,
+        text_color,
+        bg_color,
+        border_color,
+        theme,
+      }),
+    );
+  }
+
+  if (!allowlist.includes(username)) {
+    return res.send(
+      renderError("Something went wrong", "This username is not whitelisted", {
         title_color,
         text_color,
         bg_color,
